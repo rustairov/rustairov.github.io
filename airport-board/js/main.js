@@ -7,13 +7,36 @@ Date.prototype.yyyymmdd = function() {
 };
 
 var getInfo = function() {
-	//app id: 9a4ba65e
-	//key: a815ff246e0c1fc37b2c0442e7e1f080
+	//app id: 19d57e69
+	//key: e0ea60854c1205af43fd7b1203005d59
+
+	//app id: 9cabcbff
+	//key: c06f54f8a3fedd00f96b3fe4c97ee262
+	//curl -v  -X GET "https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/DME/dep/2015/7/31/13?appId=9cabcbff&appKey=c06f54f8a3fedd00f96b3fe4c97ee262&utc=true&numHours=6&codeType=IATA"
+
+	var date = new Date()
+		, airport = 'DME'
+		, mode = 'dep'
+		, year = date.getFullYear().toString()
+		, month = (date.getMonth()+1).toString()
+		, day = date.getDate().toString()
+		, hours = date.getHours().toString()
+	;
+
+	var path = airport + '/' + mode + '/' + year + '/' + month + '/' + day + '/' + hours;
+
+	$.get('https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/' + path, {
+		appId: '19d57e69',
+		appKey: 'e0ea60854c1205af43fd7b1203005d59',
+		utc: true,
+		numHours: 6,
+		codeType: 'IATA'
+	}, 'jsonp');
 
 	$.get('https://api.rasp.yandex.net/v1.0/schedule/',{
 		apikey: 'c6530a0e-a09c-4e8f-827d-d26d44418119',
 		format: 'json',
-		station: 'DMD',
+		station: 'DME',
 		lang: 'ru',
 		date: new Date().yyyymmdd(),
 		transport_types: 'plane',
@@ -21,5 +44,5 @@ var getInfo = function() {
 		show_systems: 'iata'
 	}, function(data) {
 		console.log(data);
-	});
+	}, 'jsonp');
 };
