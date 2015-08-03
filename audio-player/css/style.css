@@ -9,11 +9,14 @@ html {
     background-color: white;
 }
 
-.wrapper {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
-    display: flex;
-    align-items: center;
+.player {
+    width: 270px;
+    height: 330px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -165px;
+    margin-left: -135px;
 }
 
 .btn-file {
