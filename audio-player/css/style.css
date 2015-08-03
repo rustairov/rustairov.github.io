@@ -41,7 +41,7 @@ html {
 .cover {
     background: url(../imgs/music-note.jpg) 50% 50% no-repeat;
     background-size: cover;
-    opacity: .5;
+    opacity: 1;
     width: 260px;
     height: 260px;
     margin: 0 auto;
@@ -52,7 +52,7 @@ html {
 }
 
 .cover canvas {
-    opacity: 1;
-    width: 260px;
-    height: 260px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
