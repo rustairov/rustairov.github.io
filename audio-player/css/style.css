@@ -1,11 +1,4 @@
-html { 
-    /*
-    background: url(images/bg.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    */
+html {
     background-color: white;
 }
 
@@ -40,7 +33,7 @@ html {
     display: block;
 }
 
-p#name {
+#name {
     height: 20px;
     margin: 5px 0;
 }
@@ -49,7 +42,7 @@ p#name {
     background: url(../imgs/music-note.jpg) 50% 50% no-repeat;
     background-size: cover;
     opacity: .5;
-    max-width: 260px;
+    width: 260px;
     height: 260px;
     margin: 0 auto;
     border: 1px solid #adadad;
@@ -60,4 +53,6 @@ p#name {
 
 .cover canvas {
     opacity: 1;
+    width: 260px;
+    height: 260px;
 }

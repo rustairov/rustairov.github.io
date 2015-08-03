@@ -1,4 +1,4 @@
-window.AudioContext = window.AudioContext||window.webkitAudioContext;
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 $(function() {
     var player = new Player();
@@ -14,18 +14,18 @@ $(function() {
             player.title = tags.title;
             
             if (player.artist && player.title) {
-                $('#name').html(player.artist + ' - ' + player.title);
+                $('p#name').html(player.artist + ' - ' + player.title);
             } else {
-                $('#name').html(player.fileName);
+                $('p#name').html(player.fileName);
             }
             
             if (tags.picture) {
                 var image = tags.picture;
                 var base64String = '';
                 image.data.forEach(function(n) { base64String += String.fromCharCode(n); });
-                $('.cover').css('background-image', 'url(data:image/' + image.format + ';base64,' + window.btoa(base64String) + ')');
+                $('div.cover').css('background-image', 'url(data:image/' + image.format + ';base64,' + window.btoa(base64String) + ')');
             } else {
-                $('.cover').css('background-image', '');
+                $('div.cover').css('background-image', '');
             }
         }, { 
             tags: ['artist', 'title', 'album', 'year', 'genre', 'lyrics', 'picture'],
@@ -33,30 +33,40 @@ $(function() {
         });
     });
     
-    $('button[aria-label="Play"]').click(function(e) {
-        console.log('Play');
+    $('button#play').click(function(e) {
         player.play();
+	    console.log('Play');
     });
     
-    $('button[aria-label="Stop"]').click(function(e) {
-        console.log('Stop');
+    $('button#stop').click(function(e) {
         player.stop();
+	    console.log('Stop');
     });
     
-    $('button[aria-label="+"]').click(function(e) {
+    $('button#volumeUp').click(function(e) {
         player.volumeUp();
-        
         if (player.volume >= 1.0 ) {
-            //disable
+	        //disable
         }
+	    console.log('Volume: ' + player.volume);
     });
     
-    $('button[aria-label="-"]').click(function(e) {
+    $('button#volumeDown').click(function(e) {
         player.volumeDown();
-        
         if (player.volume <= -1.0 ) {
             //disable
         }
+	    console.log('Volume: ' + player.volume);
     });
+
+	$('ul.dropdown-menu li').click(function(e) {
+		var $this = $(this),
+			eq = $this.children().html();
+		$this.parent().children('li.active').removeClass('active');
+		$this.addClass('active');
+		player.setEqualizer(eq);
+		console.log('Equalizer: ' + eq);
+		e.preventDefault();
+	});
     
 });
