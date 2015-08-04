@@ -1,12 +1,12 @@
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
 $(function() {
     var player = new Player();
     
     $('button.btn-file :file').change(function(e) {
         var file = e.target.files[0];
         
-        player.load(file);
+        player.load(file, function() {
+            $('button#play').click();
+        });
         
         ID3.loadTags(file.name, function() {
             var tags = ID3.getAllTags(file.name);
@@ -35,11 +35,15 @@ $(function() {
     
     $('button#play').click(function(e) {
         player.play();
+        $(this).addClass('active');
+        $('button#stop').removeClass('active');
 	    console.log('Play');
     });
     
     $('button#stop').click(function(e) {
         player.stop();
+        $(this).addClass('active');
+        $('button#play').removeClass('active');
 	    console.log('Stop');
     });
     
