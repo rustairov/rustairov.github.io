@@ -6,7 +6,7 @@ var Player = function() {
 	this.title = '';
 	this.artist = '';
 	this.isPlaying = false;
-	this.volume = 1;
+	this.volume = 0;
 
 	this._context = new (window.AudioContext || window.webkitAudioContext)();
 	
