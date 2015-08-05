@@ -34,10 +34,12 @@ $(function() {
 	};
 
 	var player = new Player();
+	/*
 	player.loadURL('sounds/break - i want u.mp3', function() {
 		loadTags('sounds/break - i want u.mp3');
 		$buttonPlay.click();
 	});
+	*/
 
 	$('button.btn-file :file').change(function(e) {
 		if (e.target.files.length) {
