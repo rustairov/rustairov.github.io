@@ -1,14 +1,18 @@
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
+/**
+ * Player
+ * @constructor
+ */
 var Player = function() {
 	/* Class variables */
 	this.fileName = '';
 	this.title = '';
 	this.artist = '';
 	this.isPlaying = false;
-	this.volume = 0;
+	this.volume = .0;
 
-	this._context = new (window.AudioContext || window.webkitAudioContext)();
+	this._context = new AudioContext();
 	this._gain = this._context.createGain();
 	this._gain.connect(this._context.destination);
 	this._gain.gain.value = this.volume;
@@ -25,11 +29,15 @@ var Player = function() {
 	this.visualize();
 };
 
+/**
+ * Load file into player
+ * @param {Object} file - event.target.files from input change event
+ * @param {Function} callback - callback after load
+ */
 Player.prototype.load = function(file, callback) {
 	if (this.isPlaying) {
 		this.stop();
 	}
-
 	this.fileName = file.name;
 
 	this._source = this._context.createBufferSource();
@@ -49,6 +57,10 @@ Player.prototype.load = function(file, callback) {
 	this._reader.readAsArrayBuffer(file);
 };
 
+/**
+ * Reload source for start after stop
+ * @private
+ */
 Player.prototype._reload = function() {
 	var buffer = this._source.buffer;
 	//TODO DRY!
@@ -60,6 +72,9 @@ Player.prototype._reload = function() {
 	this._source.buffer = buffer;
 };
 
+/**
+ * Add visualizer
+ */
 Player.prototype.visualize = function() {
 	this._analyser.getByteFrequencyData(this._freqs);
 
@@ -85,30 +100,73 @@ Player.prototype.visualize = function() {
 	requestAnimationFrame(this.visualize.bind(this));
 };
 
+/**
+ * Play file
+ */
 Player.prototype.play = function() {
-	this._source.start(0);
-	this.isPlaying = true;
-	console.log('Play');
+	if (!this.isPlaying) {
+		this._source.start(0);
+		this.isPlaying = true;
+		console.log('Play');
+	}
 };
 
+/**
+ * Stop file
+ */
 Player.prototype.stop = function() {
-	this._source.stop(0);
-	this._reload();
-	this.isPlaying = false;
-	console.log('Stop');
+	if (this.isPlaying) {
+		this._source.stop(0);
+		this._reload();
+		this.isPlaying = false;
+		console.log('Stop');
+	}
 };
 
+/**
+ * Volume up
+ */
 Player.prototype.volumeUp = function() {
 	this.volume = this._gain.gain.value += .1;
 	console.log('Volume: ' + this.volume);
 };
 
+/**
+ * Volume down
+ */
 Player.prototype.volumeDown = function() {
 	this.volume = this._gain.gain.value -= .1;
 	console.log('Volume: ' + this.volume);
 };
 
+/**
+ * Set equalaizer settings
+ * @param {String} equalaizer - equalaizer name
+ */
 Player.prototype.setEqualizer = function(equalaizer) {
+	var gains = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+
+	switch(equalaizer) {
+		case 'Pop':
+			gains = [];
+			break;
+		case 'Rock':
+			gains = [];
+			break;
+		case 'Jazz':
+			gains = [];
+			break;
+		case 'Classic':
+			gains = [];
+			break;
+		case 'Hip-hop':
+			gains = [];
+			break;
+		default:
+			break;
+	}
+
 	//set eq
 	console.log('Equalizer: ' + equalaizer);
 };

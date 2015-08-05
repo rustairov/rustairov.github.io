@@ -1,12 +1,17 @@
 $(function() {
 	var player = new Player();
 
+	var $buttonPlay = $('button#play'),
+		$buttonStop = $('button#stop'),
+		$buttonVolumeUp = $('button#volumeUp'),
+		$buttonVolumeDown = $('button#volumeDown');
+
 	$('button.btn-file :file').change(function(e) {
 		if (e.target.files.length) {
 			var file = e.target.files[0];
 
 			player.load(file, function() {
-				$('button#play').click();
+				$buttonPlay.click();
 			});
 
 			ID3.loadTags(file.name, function() {
@@ -35,30 +40,28 @@ $(function() {
 		}
 	});
 
-	$('button#play').click(function(e) {
+	$buttonPlay.click(function(e) {
 		player.play();
 		$(this).addClass('active');
-		$('button#stop').removeClass('active');
+		$buttonStop.removeClass('active');
 	});
 
-	$('button#stop').click(function(e) {
+	$buttonStop.click(function(e) {
 		player.stop();
 		$(this).addClass('active');
-		$('button#play').removeClass('active');
+		$buttonPlay.removeClass('active');
 	});
 
-	$('button#volumeUp').click(function(e) {
+	$buttonVolumeUp.click(function(e) {
 		player.volumeUp();
-		if (player.volume >= 1.0 ) {
-			//disable
-		}
+		if (player.volume >= 1.0 ) { $(this).prop('disabled', true); }
+		if (player.volume < 1.0 ) { $buttonVolumeDown.prop('disabled', false); }
 	});
 
-	$('button#volumeDown').click(function(e) {
+	$buttonVolumeDown.click(function(e) {
 		player.volumeDown();
-		if (player.volume <= -1.0 ) {
-			//disable
-		}
+		if (player.volume <= -1.0 ) { $(this).prop('disabled', true); }
+		if (player.volume > -1.0 ) { $buttonVolumeDown.prop('disabled', false); }
 	});
 
 	$('ul.dropdown-menu li').click(function(e) {
