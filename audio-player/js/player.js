@@ -23,13 +23,13 @@ var Player = function() {
 	this._freqs = new Uint8Array(this._analyser.frequencyBinCount);
 
 	this._filters = [];
-    var frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
-    frequencies.forEach(function(frequency) {
-        var filter = this._context.createBiquadFilter();
-        filter.type = 'peaking';
-        filter.frequency.value = frequency;
-        this._filters.push(filter);
-    }.bind(this));
+	var frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+	frequencies.forEach(function(frequency) {
+		var filter = this._context.createBiquadFilter();
+		filter.type = 'peaking';
+		filter.frequency.value = frequency;
+		this._filters.push(filter);
+	}.bind(this));
 	this._filters.reduce(function(a, b) {
 		a.connect(b);
 		return b;
@@ -51,10 +51,10 @@ Player.prototype.loadFile = function(file, callback) {
 
 	this._source = this._context.createBufferSource();
 	this._source.loop = true;
-    this._source.connect(this._gain);
-    this._gain.connect(this._filters[0]);
-    this._filters[this._filters.length - 1].connect(this._analyser);
-    this._analyser.connect(this._context.destination);
+	this._source.connect(this._gain);
+	this._gain.connect(this._filters[0]);
+	this._filters[this._filters.length - 1].connect(this._analyser);
+	this._analyser.connect(this._context.destination);
 
 	this._reader = new FileReader();
 	this._reader.onload = function(e) {
@@ -108,10 +108,10 @@ Player.prototype._reload = function() {
 	this._source = this._context.createBufferSource();
 	this._source.loop = true;
     this._source.buffer = buffer;
-    this._source.connect(this._gain);
-    this._gain.connect(this._filters[0]);
-    this._filters[this._filters.length - 1].connect(this._analyser);
-    this._analyser.connect(this._context.destination);
+	this._source.connect(this._gain);
+	this._gain.connect(this._filters[0]);
+	this._filters[this._filters.length - 1].connect(this._analyser);
+	this._analyser.connect(this._context.destination);
 };
 
 /**
