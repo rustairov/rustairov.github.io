@@ -146,7 +146,7 @@ Player.prototype.visualize = function() {
  * Play file
  */
 Player.prototype.play = function() {
-	if (!this.isPlaying) {
+	if (!this.isPlaying && this._source) {
 		this._source.start(0);
 		this.isPlaying = true;
 		console.log('Play');

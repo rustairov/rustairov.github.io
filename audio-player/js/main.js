@@ -41,7 +41,7 @@ $(function() {
 	});
 	*/
 
-	$('button.btn-file :file').change(function(e) {
+	$('div.btn-file :file').change(function(e) {
 		if (e.target.files.length) {
 			var file = e.target.files[0];
 
