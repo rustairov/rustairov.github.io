@@ -107,7 +107,7 @@ Player.prototype._reload = function() {
 	//TODO DRY!
 	this._source = this._context.createBufferSource();
 	this._source.loop = true;
-    this._source.buffer = buffer;
+	this._source.buffer = buffer;
 	this._source.connect(this._gain);
 	this._gain.connect(this._filters[0]);
 	this._filters[this._filters.length - 1].connect(this._analyser);
