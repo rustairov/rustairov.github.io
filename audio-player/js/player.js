@@ -10,31 +10,40 @@ var Player = function() {
 	this.title = '';
 	this.artist = '';
 	this.isPlaying = false;
-	this.volume = .0;
+	this.volume = 1;
 
 	this._context = new AudioContext();
 	this._gain = this._context.createGain();
-	this._gain.connect(this._context.destination);
 	this._gain.gain.value = this.volume;
 
 	this._analyser = this._context.createAnalyser();
-	this._analyser.connect(this._context.destination);
 	this._analyser.minDecibels = -140;
 	this._analyser.maxDecibels = 0;
 	this._analyser.fftSize = 64;
-	//TODO what is it?
-	//this._analyser.smoothingTimeConstant = .8;
 	this._freqs = new Uint8Array(this._analyser.frequencyBinCount);
+
+	this._filters = [];
+    var frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+    frequencies.forEach(function(frequency) {
+        var filter = this._context.createBiquadFilter();
+        filter.type = 'peaking';
+        filter.frequency.value = frequency;
+        this._filters.push(filter);
+    }.bind(this));
+	this._filters.reduce(function(a, b) {
+		a.connect(b);
+		return b;
+	});
 
 	this.visualize();
 };
 
 /**
- * Load file into player
+ * Load local file into player
  * @param {Object} file - event.target.files from input change event
- * @param {Function} callback - callback after load
+ * @param {Function} [callback] - callback after load
  */
-Player.prototype.load = function(file, callback) {
+Player.prototype.loadFile = function(file, callback) {
 	if (this.isPlaying) {
 		this.stop();
 	}
@@ -42,9 +51,10 @@ Player.prototype.load = function(file, callback) {
 
 	this._source = this._context.createBufferSource();
 	this._source.loop = true;
-	this._source.connect(this._context.destination);
-	this._source.connect(this._gain);
-	this._source.connect(this._analyser);
+    this._source.connect(this._gain);
+    this._gain.connect(this._filters[0]);
+    this._filters[this._filters.length - 1].connect(this._analyser);
+    this._analyser.connect(this._context.destination);
 
 	this._reader = new FileReader();
 	this._reader.onload = function(e) {
@@ -58,6 +68,37 @@ Player.prototype.load = function(file, callback) {
 };
 
 /**
+ * Load file from url
+ * @param {String} url - path to file
+ * @param {Function} [callback] - callback after load
+ */
+Player.prototype.loadURL = function(url, callback) {
+    if (this.isPlaying) {
+        this.stop();
+    }
+    this.fileName = url.split('/').pop();
+
+    this._source = this._context.createBufferSource();
+    this._source.loop = true;
+    this._source.connect(this._gain);
+    this._gain.connect(this._filters[0]);
+    this._filters[this._filters.length - 1].connect(this._analyser);
+    this._analyser.connect(this._context.destination);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'arraybuffer';
+    xhr.onload = function(e) {
+        this._context.decodeAudioData(e.target.response, function(buffer) {
+            this._source.buffer = buffer;
+            if (callback) { callback.apply(this); }
+        }.bind(this));
+    }.bind(this);
+
+    xhr.send();
+};
+
+/**
  * Reload source for start after stop
  * @private
  */
@@ -66,10 +107,11 @@ Player.prototype._reload = function() {
 	//TODO DRY!
 	this._source = this._context.createBufferSource();
 	this._source.loop = true;
-	this._source.connect(this._context.destination);
-	this._source.connect(this._gain);
-	this._source.connect(this._analyser);
-	this._source.buffer = buffer;
+    this._source.buffer = buffer;
+    this._source.connect(this._gain);
+    this._gain.connect(this._filters[0]);
+    this._filters[this._filters.length - 1].connect(this._analyser);
+    this._analyser.connect(this._context.destination);
 };
 
 /**
@@ -90,10 +132,10 @@ Player.prototype.visualize = function() {
 		var offset = canvas.height - height - 1;
 		var barWidth = canvas.width / this._analyser.frequencyBinCount;
 		var hue = i / this._analyser.frequencyBinCount * 360;
-		/* diffrent styles */
+		//diffrent styles
 		//context.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
 		//context.fillStyle = 'rgba(46,109,164,.3)';
-		context.fillStyle = 'rgba(80,80,80,.3)';
+		context.fillStyle = 'rgba(20,20,20,.5)';
 		context.fillRect(i * barWidth, offset, barWidth, height);
 	}
 
@@ -144,29 +186,31 @@ Player.prototype.volumeDown = function() {
  * @param {String} equalaizer - equalaizer name
  */
 Player.prototype.setEqualizer = function(equalaizer) {
-	var gains = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-		frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000];
+	var gains = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 	switch(equalaizer) {
 		case 'Pop':
-			gains = [];
+			gains = [0.70, 0.79, 0, 1.41, 2.51, 2.51, 1.41, 0, 0.79, 0.70];
 			break;
 		case 'Rock':
-			gains = [];
+			gains = [3.16, 2.51, 1.99, 1.41, 0.89, 0.85, 1.23, 1.86, 2.51, 2.81];
 			break;
 		case 'Jazz':
-			gains = [];
+			gains = [2.51, 1.99, 1.41, 1.58, 0.70, 0.70, 0, 1.41, 1.99, 2.51];
 			break;
 		case 'Classic':
-			gains = [];
+			gains = [3.16, 2.51, 1.99, 1.77, 0.70, 0.70, 0, 1.77, 1.99, 2.23];
 			break;
-		case 'Hip-hop':
-			gains = [];
+		case 'Bass':
+			gains = [3.16, 2.51, 2.23, 1.77, 1.25, 0, 0, 0, 0, 0];
 			break;
 		default:
 			break;
 	}
 
-	//set eq
+	this._filters.forEach(function(filter, i) {
+		filter.gain.value = gains[i];
+	});
+
 	console.log('Equalizer: ' + equalaizer);
 };
