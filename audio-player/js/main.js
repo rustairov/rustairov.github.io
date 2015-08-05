@@ -4,7 +4,9 @@ $(function() {
 	var $buttonPlay = $('button#play'),
 		$buttonStop = $('button#stop'),
 		$buttonVolumeUp = $('button#volumeUp'),
-		$buttonVolumeDown = $('button#volumeDown');
+		$buttonVolumeDown = $('button#volumeDown'),
+		$pName = $('p#name'),
+		$divCover = $('div.cover');
 
 	$('button.btn-file :file').change(function(e) {
 		if (e.target.files.length) {
@@ -20,18 +22,18 @@ $(function() {
 				player.title = tags.title;
 
 				if (player.artist && player.title) {
-					$('p#name').html(player.artist + ' - ' + player.title);
+					$pName.html(player.artist + ' - ' + player.title);
 				} else {
-					$('p#name').html(player.fileName);
+					$pName.html(player.fileName);
 				}
 
 		        if (tags.picture) {
 			        var image = tags.picture;
 			        var base64String = '';
 			        image.data.forEach(function(n) { base64String += String.fromCharCode(n); });
-			        $('div.cover').css('background-image', 'url(data:image/' + image.format + ';base64,' + window.btoa(base64String) + ')');
+			        $divCover.css('background-image', 'url(data:image/' + image.format + ';base64,' + window.btoa(base64String) + ')');
 		        } else {
-			        $('div.cover').css('background-image', '');
+			        $divCover.css('background-image', '');
 		        }
 			}, {
 				tags: ['artist', 'title', 'album', 'year', 'genre', 'lyrics', 'picture'],
