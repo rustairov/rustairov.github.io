@@ -57,7 +57,7 @@ html {
 }
 
 .cover i {
-    color: #d4d4d4;
+    color: rgba(20,20,20,.5);
     position: absolute;
     top: 50%;
     margin-top: -25px;
