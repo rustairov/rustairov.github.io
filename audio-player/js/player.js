@@ -143,7 +143,7 @@ Player.prototype._visualize = function() {
  * Play file
  */
 Player.prototype.play = function() {
-	if (!this.isPlaying && this._source.buffer) {
+	if (!this.isPlaying && this._source && this._source.buffer) {
 		this._source.start(0);
 		this.isPlaying = true;
 		console.log('Play');
@@ -154,7 +154,7 @@ Player.prototype.play = function() {
  * Stop file
  */
 Player.prototype.stop = function() {
-	if (this.isPlaying && this._source.buffer) {
+	if (this.isPlaying && this._source && this._source.buffer) {
 		this._source.stop(0);
 		this._reload();
 		this.isPlaying = false;

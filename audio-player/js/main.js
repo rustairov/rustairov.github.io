@@ -5,7 +5,8 @@ $(function() {
 		$buttonVolumeUp = $('button#volumeUp'),
 		$buttonVolumeDown = $('button#volumeDown'),
 		$pName = $('p#name'),
-		$divCover = $('div.cover');
+		$divCover = $('div.cover'),
+		$player = $('div.player');
 
 	var loadTags = function(file, datareader) {
 		ID3.loadTags(file, function() {
@@ -35,15 +36,39 @@ $(function() {
 
 	var player = new Player();
 
-	/*------------------------------------- Starting demo. You can comment this! -------------------------------------*/
+	/*------------------------------- Starting demo after load. You can uncomment this! ------------------------------*/
+	/*
 	$divCover.append('<i class="fa fa-refresh fa-spin fa-2x"></i>');
 	player.loadURL('sounds/break - i want u.mp3', function() {
 		$divCover.children('i').remove();
 		loadTags('sounds/break - i want u.mp3');
 		$buttonPlay.click();
 	});
+	*/
 	/*----------------------------------------------------------------------------------------------------------------*/
+	$player.on('dragenter', function(e) {
+		$divCover.addClass('load');
+		e.preventDefault();
+	});
+	$player.on('dragover', function(e) {
+		e.preventDefault();
+	});
+	$player.on('dragleave', function(e) {
+		$divCover.removeClass('load');
+		e.preventDefault();
+	});
+	$player.on('drop', function(e) {
+		$divCover.removeClass('load');
+		if (e.originalEvent.dataTransfer.files.length) {
+			var file = e.originalEvent.dataTransfer.files[0];
 
+			player.loadFile(file, function() {
+				loadTags(file.name, FileAPIReader(file));
+				$buttonPlay.click();
+			});
+		}
+		e.preventDefault();
+	});
 
 	$('div.btn-file :file').change(function(e) {
 		if (e.target.files.length) {

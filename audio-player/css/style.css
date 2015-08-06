@@ -53,6 +53,11 @@ html {
     transition: background 250ms ease-in-out;
 }
 
+.load {
+    background-image: url(../imgs/plus.jpg);
+    border: 1px solid #2e6da4;
+}
+
 .cover canvas {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
