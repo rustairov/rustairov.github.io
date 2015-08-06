@@ -101,12 +101,13 @@ Player.prototype.loadURL = function(url, callback) {
  * @private
  */
 Player.prototype._reload = function() {
-	var buffer = this._source.buffer;
-	//TODO DRY!
-	this._source = this._context.createBufferSource();
-	this._source.loop = true;
-	this._source.buffer = buffer;
-	this._source.connect(this._gain);
+	if (this._source.buffer) {
+		var buffer = this._source.buffer;
+		this._source = this._context.createBufferSource();
+		this._source.loop = true;
+		this._source.buffer = buffer;
+		this._source.connect(this._gain);
+	}
 };
 
 /**
