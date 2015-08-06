@@ -35,7 +35,7 @@ var Player = function() {
 		return b;
 	});
 
-	this.visualize();
+	this._visualize();
 };
 
 /**
@@ -116,13 +116,14 @@ Player.prototype._reload = function() {
 
 /**
  * Add visualizer
+ * @private
  */
-Player.prototype.visualize = function() {
+Player.prototype._visualize = function() {
 	this._analyser.getByteFrequencyData(this._freqs);
 
 	var canvas = document.querySelector('canvas');
-	canvas.width = document.querySelector('.cover').offsetWidth - 1;
-	canvas.height = document.querySelector('.cover').offsetHeight - 1;
+	canvas.width = canvas.parentNode.offsetWidth - 2;
+	canvas.height = canvas.parentNode.offsetHeight - 2;
 	var context = canvas.getContext('2d');
 
 	for (var i = 0; i < this._analyser.frequencyBinCount; i++) {
@@ -139,7 +140,7 @@ Player.prototype.visualize = function() {
 		context.fillRect(i * barWidth, offset, barWidth, height);
 	}
 
-	requestAnimationFrame(this.visualize.bind(this));
+	requestAnimationFrame(this._visualize.bind(this));
 };
 
 /**
@@ -157,7 +158,7 @@ Player.prototype.play = function() {
  * Stop file
  */
 Player.prototype.stop = function() {
-	if (this.isPlaying) {
+	if (this.isPlaying && this._source) {
 		this._source.stop(0);
 		this._reload();
 		this.isPlaying = false;
