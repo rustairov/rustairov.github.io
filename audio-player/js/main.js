@@ -35,8 +35,8 @@ $(function() {
 
 	var player = new Player();
 
-	/*------------------------------------- Starting demo. You can comment this! ------------------------------------*/
-	$divCover.html('<i class="fa fa-refresh fa-spin"></i>');
+	/*------------------------------------- Starting demo. You can comment this! -------------------------------------*/
+	$divCover.html('<i class="fa fa-refresh fa-spin fa-4x"></i>');
 	player.loadURL('sounds/break - i want u.mp3', function() {
 		$divCover.html('');
 		loadTags('sounds/break - i want u.mp3');
