@@ -47,6 +47,10 @@ html {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+
+    -webkit-transition: background 300ms ease-in-out;
+    -moz-transition: background 300ms ease-in-out;
+    transition: background 300ms ease-in-out;
 }
 
 .cover canvas {
@@ -58,7 +62,6 @@ html {
 
 .cover i {
     color: rgba(20,20,20,.5);
-    position: absolute;
-    top: 50%;
-    margin-top: -25px;
+    position: relative;
+    top: -150px;
 }

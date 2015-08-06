@@ -36,9 +36,9 @@ $(function() {
 	var player = new Player();
 
 	/*------------------------------------- Starting demo. You can comment this! -------------------------------------*/
-	$divCover.append('<i class="fa fa-refresh fa-spin fa-3x"></i>');
+	$divCover.append('<i class="fa fa-refresh fa-spin fa-2x"></i>');
 	player.loadURL('sounds/break - i want u.mp3', function() {
-		$divCover.remove('i');
+		$divCover.children('i').remove();
 		loadTags('sounds/break - i want u.mp3');
 		$buttonPlay.click();
 	});

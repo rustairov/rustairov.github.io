@@ -13,6 +13,7 @@ var Player = function() {
 	this.volume = 1;
 
 	this._context = new AudioContext();
+
 	this._gain = this._context.createGain();
 	this._gain.gain.value = this.volume;
 
