@@ -55,3 +55,10 @@ html {
     border-radius: 4px;
     margin: 0 auto;
 }
+
+.cover i {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+}

@@ -35,6 +35,10 @@ var Player = function() {
 		return b;
 	});
 
+	this._gain.connect(this._filters[0]);
+	this._filters[this._filters.length - 1].connect(this._analyser);
+	this._analyser.connect(this._context.destination);
+
 	this._visualize();
 };
 
@@ -52,9 +56,6 @@ Player.prototype.loadFile = function(file, callback) {
 	this._source = this._context.createBufferSource();
 	this._source.loop = true;
 	this._source.connect(this._gain);
-	this._gain.connect(this._filters[0]);
-	this._filters[this._filters.length - 1].connect(this._analyser);
-	this._analyser.connect(this._context.destination);
 
 	this._reader = new FileReader();
 	this._reader.onload = function(e) {
@@ -77,13 +78,9 @@ Player.prototype.loadURL = function(url, callback) {
         this.stop();
     }
     this.fileName = url.split('/').pop();
-
     this._source = this._context.createBufferSource();
     this._source.loop = true;
     this._source.connect(this._gain);
-    this._gain.connect(this._filters[0]);
-    this._filters[this._filters.length - 1].connect(this._analyser);
-    this._analyser.connect(this._context.destination);
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
@@ -109,9 +106,6 @@ Player.prototype._reload = function() {
 	this._source.loop = true;
 	this._source.buffer = buffer;
 	this._source.connect(this._gain);
-	this._gain.connect(this._filters[0]);
-	this._filters[this._filters.length - 1].connect(this._analyser);
-	this._analyser.connect(this._context.destination);
 };
 
 /**
@@ -122,8 +116,8 @@ Player.prototype._visualize = function() {
 	this._analyser.getByteFrequencyData(this._freqs);
 
 	var canvas = document.querySelector('canvas');
-	canvas.width = canvas.parentNode.offsetWidth - 2;
-	canvas.height = canvas.parentNode.offsetHeight - 2;
+	canvas.width = canvas.parentNode.offsetWidth - 1;
+	canvas.height = canvas.parentNode.offsetHeight - 1;
 	var context = canvas.getContext('2d');
 
 	for (var i = 0; i < this._analyser.frequencyBinCount; i++) {
