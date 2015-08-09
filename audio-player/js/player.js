@@ -75,25 +75,25 @@ Player.prototype.loadFile = function(file, callback) {
  * @param {Function} [callback] - callback after load
  */
 Player.prototype.loadURL = function(url, callback) {
-    if (this.isPlaying) {
-        this.stop();
-    }
-    this.fileName = url.split('/').pop();
-    this._source = this._context.createBufferSource();
-    this._source.loop = true;
-    this._source.connect(this._gain);
+	if (this.isPlaying) {
+		this.stop();
+	}
+	this.fileName = url.split('/').pop();
+	this._source = this._context.createBufferSource();
+	this._source.loop = true;
+	this._source.connect(this._gain);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'arraybuffer';
-    xhr.onload = function(e) {
-        this._context.decodeAudioData(e.target.response, function(buffer) {
-            this._source.buffer = buffer;
-            if (callback) { callback.apply(this); }
-        }.bind(this));
-    }.bind(this);
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', url, true);
+	xhr.responseType = 'arraybuffer';
+	xhr.onload = function(e) {
+		this._context.decodeAudioData(e.target.response, function(buffer) {
+			this._source.buffer = buffer;
+			if (callback) { callback.apply(this); }
+		}.bind(this));
+	}.bind(this);
 
-    xhr.send();
+	xhr.send();
 };
 
 /**
