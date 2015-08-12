@@ -11,6 +11,7 @@ var Player = function() {
 	this.artist = '';
 	this.isPlaying = false;
 	this.volume = 1;
+	/*-----------------*/
 
 	this._context = new AudioContext();
 
