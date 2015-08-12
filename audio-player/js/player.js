@@ -32,9 +32,9 @@ var Player = function() {
 		filter.frequency.value = frequency;
 		this._filters.push(filter);
 	}.bind(this));
-	this._filters.reduce(function(a, b) {
-		a.connect(b);
-		return b;
+	this._filters.reduce(function(first, second) {
+		first.connect(second);
+		return second;
 	});
 
 	this._gain.connect(this._filters[0]);
