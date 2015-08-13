@@ -54,7 +54,7 @@ html {
 }
 
 .load {
-    background-image: url(../imgs/plus.jpg);
+    background-image: url(../imgs/plus.jpg) !important;
     border: 1px solid #2e6da4;
 }
 
