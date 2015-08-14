@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moscow, Domodedovo (DME)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300&amp;subset=latin,cyrillic" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/clock.css">
+</head>
+<body class="dme">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-lg-10 col-lg-offset-1">
+                <div class="row">
+                    <div class="col-xs-12 padding-15">
+                        <div id="clock-container">
+                            <svg id="clock" viewBox="0 0 100 100">
+                                <filter id="shadow" x="-5" y="-5" width="10" height="10">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="5"></feGaussianBlur>
+                                    <feOffset dx="0" dy="0" result="offsetblur"></feOffset>
+                                    <feMerge>
+                                        <feMergeNode></feMergeNode>
+                                        <feMergeNode in="SourceGraphic"></feMergeNode>
+                                    </feMerge>
+                                </filter>
+                                <circle id="face" cx="50" cy="50" r="40" fill="white" style="filter:url(#shadow)"></circle>
+                                <g id="hands">
+                                    <rect id="hour" x="47.5" y="22.5" width="5" height="30" rx="2.5" ry="2.55"></rect>
+                                    <rect id="min" x="48.5" y="22.5" width="3" height="30" rx="2" ry="2"></rect>
+                                    <line id="sec" x1="50" y1="50" x2="50" y2="16"></line>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 text-left padding-15">
+                        <h3>Moscow, Domodedovo (DME)</h3>
+                    </div>
+                    <div class="col-xs-12 col-md-6 text-right padding-15">
+                        <div data-toggle="buttons" class="btn-group">
+                            <label class="btn btn-default active">
+                                <input type="radio" name="type" value="dep" autocomplete="off" checked><i class="fa fa-plane"></i>Departure
+                            </label>
+                            <label class="btn btn-default">
+                                <input type="radio" name="type" value="arr" autocomplete="off"><i class="fa fa-plane fa-flip-vertical"></i>Arrival
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 padding-15">
+                        <div id="table">
+                            <div class="panel panel-default">
+                                <table class="table table-striped table-bordered table-hover table-fixed-header shadow">
+                                    <thead class="header">
+                                        <tr>
+                                            <th>Flight Number</th>
+                                            <th class="hidden-xs"> Airline</th>
+                                            <th class="hidden-xs">Aircraft</th>
+                                            <th class="hidden-xs">City (airport)</th>
+                                            <th>Terminal</th>
+                                            <th>Time</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tboby>
+                                        <tr>
+                                            <td><span class="label label-success">СУ 5816</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Orenburg_Airlines.png"/><span>Orenburg Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Orenburg (Tsentralny)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>00:05<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 01:53</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ЮТ 555</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/UTair_Aviation.png"/><span>UTair Aviation</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-500</td>
+                                            <td class="hidden-xs">Chelyabinsk</td>
+                                            <td><i class="fa fa-minus"></i></td>
+                                            <td>00:05<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 02:14</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ОП 4535</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Gazpromavia.png"/><span>Gazpromavia</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Krasnodar (Pashkovsky)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>00:20<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 02:55</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ЮТ 535</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/UTair_Aviation.png"/><span>UTair Aviation</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Krasnodar (Pashkovsky)</td>
+                                            <td><i class="fa fa-minus"></i></td>
+                                            <td>00:20<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 02:55</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">ЮТ 265</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/UTair_Aviation.png"/><span>UTair Aviation</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-500</td>
+                                            <td class="hidden-xs">Kurgan</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>00:40<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Departed at 01:22</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">ТК 9042</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Turkish_Airlines.png"/><span>Turkish Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-700</td>
+                                            <td class="hidden-xs">Kurgan</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>00:40<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Departed at 01:22</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">Р2 5826</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Orenburg_Airlines.png"/><span>Orenburg Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Chelyabinsk</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>00:50<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 03:07</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">UN 277</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Transaero_Airlines.png"/><span>Transaero Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-700</td>
+                                            <td class="hidden-xs">Aktobe</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>01:50<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 03:51</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">4U 995</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Germanwings.png"/><span>Germanwings</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Аэробус </span>А319</td>
+                                            <td class="hidden-xs">Cologne (Cologne/Bonn)</td>
+                                            <td><i class="fa fa-b"></i></td>
+                                            <td>02:15<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 06:50</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ДР 239</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Pobeda.png"/><span>Pobeda</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Nizhnevartovsk</td>
+                                            <td><i class="fa fa-b"></i></td>
+                                            <td>02:20<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 04:37</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">TK 212</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Turkish_Airlines.png"/><span>Turkish Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Аэробус </span>А321</td>
+                                            <td class="hidden-xs">Antalya</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>03:20<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 06:38</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">ОП 909</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Gazpromavia.png"/><span>Gazpromavia</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Аэробус </span>А321</td>
+                                            <td class="hidden-xs">Nadym</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>03:20<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Departed at 04:00</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ОП 947</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Gazpromavia.png"/><span>Gazpromavia</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-700</td>
+                                            <td class="hidden-xs">Novy Urengoy</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>03:25<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 07:26</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">I4 9215</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/I_Fly.png"/><span>I Fly</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>757-200</td>
+                                            <td class="hidden-xs">Hurghada</td>
+                                            <td><i class="fa fa-b"></i></td>
+                                            <td>03:30<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 08:15</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">R2 3935</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Orenburg_Airlines.png"/><span>Orenburg Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Kos (Ippokratis)</td>
+                                            <td><i class="fa fa-b"></i></td>
+                                            <td>04:00<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Departed at 04:21</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">TK 420</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Turkish_Airlines.png"/><span>Turkish Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Istanbul (Ataturk)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>05:00<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 07:37</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">I4 9221</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/I_Fly.png"/><span>I Fly</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Sharm El Sheikh (Int.)</td>
+                                            <td><i class="fa fa-b"></i></td>
+                                            <td>06:00<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 10:31</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ДР 175</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Pobeda.png"/><span>Pobeda</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Pobeda</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>07:00<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 09:05</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">UN 839</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Transaero_Airlines.png"/><span>Transaero Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>747-400</td>
+                                            <td class="hidden-xs">Hurghada</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>08:20<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 13:10</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-danger">A9 935</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Georgian_Airways.png"/><span>Georgian Airways</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-500</td>
+                                            <td class="hidden-xs">Tbilisi</td>
+                                            <td><i class="fa fa-minus"></i></td>
+                                            <td>09:05<br/><span>11.08.2015</span></td>
+                                            <td class="danger">Cancelled</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">UN 301</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Transaero_Airlines.png"/><span>Transaero Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Tel Aviv Yafo (Ben Gurion Intl)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>10:00<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 14:29</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ZI 1357</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Aigle_Azur.png"/><span>Aigle Azur</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Paris (Orly)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>11:00<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 15:05</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">M9 316</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Motor_Sich.png"/><span>Motor Sich</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>АН-140 </span></td>
+                                            <td class="hidden-xs">Zaporizhzhia (Mokraya Int.)</td>
+                                            <td><i class="fa fa-b"></i></td>
+                                            <td>13:25<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 15:57</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ГГ 721</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Grozny_Avia.png"/><span>Grozny Avia</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>ЯК-42Д </span></td>
+                                            <td class="hidden-xs">Groznyj</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>14:30<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 16:57</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">FZ 912</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/flydubai.png"/><span>flydubai</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Dubai (Int.)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>14:50<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 19:53</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">ПЛ 6154</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Rossiya_Airlines.png"/><span>Rossiya Airlines</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Аэробус </span>А319</td>
+                                            <td class="hidden-xs">St. Petersburg (Pulkovo)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>17:45<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 19:11</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">LH 1471</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Lufthansa.png"/><span>Lufthansa</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Аэробус </span>А320</td>
+                                            <td class="hidden-xs">Frankfurt (Int.)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>18:30<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Departed at 18:51</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-success">BT 7419</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/airBaltic.png"/><span>airBaltic</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-700</td>
+                                            <td class="hidden-xs">Riga (Int.)</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>18:45<br/><span>11.08.2015</span></td>
+                                            <td class="success">Landed 20:15</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">ДР 259</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/Pobeda.png"/><span>Pobeda</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-800</td>
+                                            <td class="hidden-xs">Surgut</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>23:40<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Boarding now. End at 23:15. Gate 13A</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="label label-primary">ЮТ 573</span></td>
+                                            <td class="hidden-xs">
+                                                <img alt="" src="imgs/airline/UTair_Aviation.png"/><span>UTair Aviation</span>
+                                            </td>
+                                            <td class="hidden-xs"><span>Боинг </span>737-400</td>
+                                            <td class="hidden-xs">Mineralnye Vody</td>
+                                            <td><i class="fa fa-a"></i></td>
+                                            <td>23:50<br/><span>11.08.2015</span></td>
+                                            <td class="primary">Check-in now. End at 23:10</td>
+                                        </tr>
+                                    </tboby>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="js/table-fixed-header.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/clock.js"></script>
+</body>
+</html>

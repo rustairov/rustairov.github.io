@@ -1,0 +1,117 @@
+@media (max-width: 992px) {
+    td span {  display: none;  }
+}
+
+@media (min-width: 992px) {
+    th:nth-child(2),
+    td:nth-child(2) {  min-width: 185px;  }
+
+    th:nth-child(3),
+    td:nth-child(3) {  min-width: 110px;  }
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    color: #000;
+}
+
+h3 {  margin: 0;  }
+
+thead {  background-color: #fff;  }
+
+th, td {  border: none !important;  }
+
+td img {  margin-right: 10px;  }
+
+th {  text-align: center;  }
+
+td:nth-child(1),
+td:nth-child(5),
+td:nth-child(6) {  text-align: center;  }
+
+td:nth-child(6) span {  font-size: 10px;  }
+
+.table > thead > tr > th,
+.table > tbody > tr > td {  vertical-align: middle;  }
+
+.table {  background-color: #fff;  }
+
+.table-striped > tbody > tr:nth-of-type(odd) > td.success {  background-color: #cdf0c3;  }
+.table-striped > tbody > tr:nth-of-type(odd):hover > td.success {  background-color: #d0e9c6;  }
+
+.table-striped > tbody > tr:nth-of-type(odd) > td.danger {  background-color: #f2d0cd;  }
+.table-striped > tbody > tr:nth-of-type(odd):hover > td.danger {  background-color: #ebcccc;  }
+
+.table-striped > tbody > tr:nth-of-type(odd) > td.warning {  background-color: #fcf8d3;  }
+.table-striped > tbody > tr:nth-of-type(odd):hover > td.warning {  background-color: #faf2cc;  }
+
+.shadow {
+    -webkit-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.8);
+}
+
+.dme {
+    background: url(../imgs/dme.jpg) no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.svo {
+    background: url(../imgs/svo.jpg) no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.vko {
+    background: url(../imgs/vko.jpg) no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.airport {
+    background: url(../imgs/airport.jpg) no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.btn-group i {  margin-right: 5px;  }
+
+.fa-a:before {
+    font-weight: bold;
+    color: #d9534f;
+    content: 'A';
+}
+
+.fa-b:before {
+    font-weight: bold;
+    color: #337ab7;
+    content: 'B';
+}
+
+.fa-d:before {
+    font-weight: bold;
+    color: #5cb85c;
+    content: 'D';
+}
+
+table .header-fixed {
+    position: fixed;
+    top: 0;
+    z-index: 1020;
+    border-bottom: 1px solid #d5d5d5;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+}
+
+.padding-15 {  padding: 15px;  }

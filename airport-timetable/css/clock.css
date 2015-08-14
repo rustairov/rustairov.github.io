@@ -1,0 +1,12 @@
+
+#clock-container {
+    width: 15%;
+    margin: 0 auto;
+}
+#face { stroke-width: 1px; stroke: #fff; }
+#hour, #min, #sec {
+    stroke-width: 1px;
+    fill: #333;
+    stroke: #555;
+}
+#sec { stroke: #f55; }
