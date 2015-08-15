@@ -116,23 +116,23 @@
          */
 
         function findByCity(city) {
-            var res = 0;
+            var result = 0;
             responses['/populations'].forEach(function(population) {
                 if (population.name === city) {
-                    res = population.count;
+                    result = population.count;
                 }
             });
-            return res;
+            return result;
         }
 
         function findByCountry(country) {
-            var res = 0;
+            var result = 0;
             responses['/cities'].forEach(function(city) {
                 if (city.country === country) {
-                    res += findByCity(city.name);
+                    result += findByCity(city.name);
                 }
             });
-            return res;
+            return result;
         }
 
         function getname() {
