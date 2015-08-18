@@ -7,4 +7,6 @@ $(function() {
             console.log('arr');
         }
     });
+
+	$('.table-fixed-header').fixedHeader();
 });
