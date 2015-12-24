@@ -31,12 +31,14 @@
 
         .wrapper img { max-width: 100%; }
 
-        .content { text-align: center; }
+        .content {
+            text-align: center;
+            text-transform: uppercase;
+        }
 
         .content h1 {
             font-weight: 700;
             font-size: 36px;
-            text-transform: uppercase;
             margin: 0;
         }
 
@@ -66,15 +68,28 @@
             display: inline;
         }
 
-        .links li a { font-size: 24px; }
+        .links li a {
+            font-size: 24px;
+            transition: .2s;
+            -webkit-transition: .2s;
+            -moz-transition: .2s;
+        }
 
         .links li a.mail { color: #FF7660; }
 
+        .links li a.mail:hover { color: #ff9884; }
+
         .links li a.skype { color: #449BAA; }
+
+        .links li a.skype:hover { color: #43b5c4; }
 
         .links li a.facebook { color: #28586B; }
 
+        .links li a.facebook:hover { color: #2e7b8f; }
+
         .links li a.github { color: #000; }
+
+        .links li a.github:hover { color: #4f4f4f; }
 
 
     </style>
