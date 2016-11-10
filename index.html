@@ -71,7 +71,7 @@
         .wrapper_color_5 .content__line { background-color: #220B38; }
 
         .content {
-            max-width: 30%;
+            max-width: 90%;
             text-align: center;
             text-transform: uppercase;
         }
@@ -131,21 +131,34 @@
 
         .content__link_icon_linkedin:hover { color: #0077b5; }
 
-        @media (max-width: 425px) {
-            .content {
-                max-width: 90%;
-            }
+        @media (max-width: 768px) {
 
             .content__title {
-                font-size: 12vw;
+                font-size: 9vw;
             }
 
             .content__subtitle {
-                font-size: 3vw;
+                font-size: 2.25vw;
             }
 
             .content__link {
-                font-size: 3vw;
+                font-size: 2.25vw;
+            }
+
+        }
+
+        @media (max-width: 425px) {
+
+            .content__title {
+                font-size: 15vw;
+            }
+
+            .content__subtitle {
+                font-size: 4.5vw;
+            }
+
+            .content__link {
+                font-size: 4.5vw;
             }
 
         }
