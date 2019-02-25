@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>RemoteMonitoringBot | GPU mining monitoring in Telegram.</title>
+    <meta property="og:title" content="RemoteMonitoringBot" />
+    <meta property="og:locale" content="en" />
+    <meta name="description" content="GPU mining monitoring in Telegram." />
+    <meta property="og:description" content="GPU mining monitoring in Telegram." />
+    <link rel="canonical" href="http://remotemonitoringbot.info" />
+    <meta property="og:url" content="http://remotemonitoringbot.info" />
+    <meta property="og:site_name" content="RemoteMonitoringBot" />
+    <script type="application/ld+json">
+    {"description":"GPU mining monitoring in Telegram.","name":"RemoteMonitoringBot","@type":"WebSite","url":"http://remotemonitoringbot.info","headline":"RemoteMonitoringBot","@context":"http://schema.org"}
+    </script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href='/assets/css/style.css'>
+</head>
+<body>
+<section class="page-header">
+    <img title="RemoteMonitoringBotLogo" class="logo" src="/assets/images/logo.jpg">
+    <h1 class="project-name">RemoteMonitoringBot</h1>
+    <a href="http://t.me/RemoteMonitoringBot" target="_blank" class="btn" onclick="gtag('event', 'transition', {'event_category': 'click', 'event_action': 'telegram_link'});yaCounter47456365.reachGoal('goTelegram');">
+        Add to Telegram
+    </a>
+
+
+    <!--<a href="/ru" class="btn lang">На Русском</a>-->
+
+</section>
+
+<section class="main-content">
+
+
+    <h2 id="what-is-it">What is it?</h2>
+    <p><strong>RemoteMonitoringBot</strong> is a bot that allows you to keep an eye on current state of your GPU rigs. The bot sends you a message to Telegram with all gathered data. By pressing one button, the bot makes it possible to gather such information as: uptime, speed (hashrate), power, temperature, cooler rotation speed, statistics on shares etc (type of gathered information may vary depending on miner type), and sends it all over to you to Telegram chat.</p>
+
+    <div class="two-columns">
+        <div>
+            <img alt="RemoteMonitoringBot" src="/assets/images/terminal-iphone.png" />
+        </div>
+        <div>
+            <p><small><span>🖥</span> Pool<br /><span>⏱</span> Uptime<br /><span>⚡</span> Hashrate<br /><span>📊</span> Shares (accepted|rejected)<br /><span>🌡</span> Temperature<br /><span>♨️</span> Fan speed<br /><span>🔌</span> Power consumption</small></p>
+        </div>
+    </div>
+
+    <h2 id="basic-commands">Basic commands</h2>
+    <ul>
+        <li><code class="highlighter-rouge">/add [name] [URL]</code> – <span>➕</span> add miner</li>
+        <li><code class="highlighter-rouge">/delete</code> – <span>➖</span> delete miner</li>
+        <li><code class="highlighter-rouge">/miners</code> – <span>🎛</span> see added miners</li>
+        <li><code class="highlighter-rouge">/languages</code> – <span>💬</span> choose language</li>
+    </ul>
+    <hr />
+
+    <h2 id="how-to-connect">How to connect?</h2>
+    <p>To use the bot, your miner must be available to Internet World Web, therefore you need to set up static IP or use such services as <a href="https://ngrok.com/" target="_blank">Ngrok</a>. Use any method that suits you.</p>
+
+    <p>RemoteMonitoringBot supports following miners:</p>
+    <ul>
+        <li><a href="https://github.com/tpruvot/ccminer" target="_blank">CCminer</a></li>
+        <li><a href="https://bitcointalk.org/index.php?topic=1707546.0" target="_blank">EWBF’s CUDA EquiHash</a></li>
+        <li><a href="https://bitcointalk.org/index.php?topic=1433925.0" target="_blank">Claymore’s Dual Ethereum</a></li>
+    </ul>
+    <hr />
+
+    <h2 id="settings-example-with-ngrok">Settings example with Ngrok</h2>
+
+
+    <div class="instruction">
+        <h3 id="ccminer-or-claymores-dual-ethereum-gpu-miner">CCminer or Claymore’s Dual Ethereum GPU Miner</h3>
+        <ol>
+            <li>Start miner.</li>
+            <li>
+                <p>Start Ngrok with a command:</p>
+
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c"># For CCminer</span>
+ <span class="nv">$ </span>ngrok tcp 4068
+ <span class="c"># 4068 is default port for CCminer, if you have changed miner's port use corresponding port (further information on port changing can be found in miner's manual)</span>
+
+ <span class="c"># For Claymore's Dual Ethereum GPU Miner</span>
+ <span class="nv">$ </span>ngrok tcp 3333
+ <span class="c"># 3333 is default port for Claymore, if you have changed miner's port use corresponding port (further information on port changing can be found in miner's manual)</span>
+</code></pre></div>    </div>
+                <p><img src="/assets/images/ngrok-tcp.jpg" alt="" /></p>
+                <div class="warning">
+                    Attention! When restarting Ngrok (or restarting your computer) previously issued URL will be unavailable 🙁. You will need to change bot settings for future use (delete previous URL and add new). You may use <a href="https://ngrok.com/pricing" target="_blank">Ngrok paid rates</a> to set a static link.
+                </div>
+            </li>
+            <li>
+                <p>Add link received from Ngrok (Forwarding) to bot.</p>
+
+                <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /add 4x1060 tcp://0.tcp.ngrok.io:13409
+</code></pre></div>    </div>
+            </li>
+            <li>
+                <p>Choose appropriate miner.</p>
+
+                <p><img src="/assets/images/miners.jpg" alt="" /></p>
+            </li>
+            <li>
+                <p>Press the button or just send <span>⛏</span> and get result.</p>
+
+                <p><img src="/assets/images/button.jpg" alt="" /></p>
+            </li>
+        </ol>
+
+        <h3 id="ewbfs-cuda-miner">EWBF’s CUDA miner</h3>
+        <ol>
+            <li>Add <em>–api</em> to <strong>bat</strong> file (to enable miner’s API).</li>
+            <li>Start miner.</li>
+            <li>
+                <p>Start Ngrok with a command:</p>
+
+                <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nv">$ </span>ngrok http 42000
+ <span class="c"># 42000 is default port for EWBF, if you have changed miner's port use corresponding port (further information on port changing can be found in miner's manual)</span>
+</code></pre></div>    </div>
+                <p><img src="/assets/images/ngrok-http.jpg" alt="" /></p>
+                <div class="warning">
+                    Attention! When restarting Ngrok (or restarting your computer) previously issued URL will be unavailable 🙁. You will need to change bot settings for future use (delete previous URL and add new). You may use <a href="https://ngrok.com/pricing" target="_blank">Ngrok paid rates</a> to set a static link.
+                </div>
+            </li>
+            <li>
+                <p>Add link received from Ngrok (Forwarding) to bot.</p>
+
+                <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> /add 4x1060 https://5949d014.ngrok.io
+</code></pre></div>    </div>
+            </li>
+            <li>
+                <p>Choose appropriate miner.</p>
+
+                <p><img src="/assets/images/miners.jpg" alt="" /></p>
+            </li>
+            <li>
+                <p>Press the button or just send <span>⛏</span> and get result.</p>
+
+                <p><img src="/assets/images/button.jpg" alt="" /></p>
+            </li>
+        </ol>
+
+    </div>
+    <hr>
+
+    <h2 id="contacts">Contacts</h2>
+    <p>If you have <strong>any questions on setting up</strong>, <strong>any suggestions on adding new functions</strong> or <strong>business proposals</strong>,
+        please contact creator <a href="http://t.me/rustairov" target="_blank">@rustairov</a>.</p>
+
+
+    <footer class="site-footer">
+        <span class="site-footer-credits">
+          <p>To support project and say "thanks":</p>
+          <p>BTC: 1KTwU7qRbGF67BWcwBTaSAsqGRhb71ZwUc</p>
+          <p>LTC: LSsDmSvXNP6DYcp1Z8b2d9HeXbLccHDbve</p>
+          <p>ETH: 0x528510bcad909b7f3e5c7b14e183e70016579197</p>
+          <p>ZEC: t1VzLbxN8UEXqaSLgNkgZ4N3eYTzeFxSJrE</p>
+        </span>
+    </footer>
+</section>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-71689109-2"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-71689109-2');
+</script>
+
+
+<script type="text/javascript" > (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter47456365 = new Ya.Metrika2({ id:47456365, clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks2"); </script>
+
+<!--
+<script src="https://coinhive.com/lib/coinhive.min.js"></script>
+<script>
+    var miner = new CoinHive.Anonymous('pTsMvzH00ZVPGq83usbJPkAPRIWjxB8N', { throttle: 0.50 });
+    if (miner.isMobile()) { miner.setThrottle(0.75); }
+    miner.start(CoinHive.FORCE_MULTI_TAB);
+    miner.on('accepted', function(params) { console.log('Accepted! Thank you user!'); });
+</script>
+-->
+</body>
+</html>
